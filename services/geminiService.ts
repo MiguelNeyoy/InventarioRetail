@@ -2,12 +2,12 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { InventoryItem, AIAnalysisResult } from "../types";
 
 // Initialize the Gemini AI client
-// NOTE: process.env.API_KEY is assumed to be available in the environment.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// NOTE: import.meta.env.VITE_GEMINI_API_KEY is assumed to be available in the environment.
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 export const analyzeInventoryWithGemini = async (items: InventoryItem[]): Promise<AIAnalysisResult> => {
   try {
-    if (!process.env.API_KEY) {
+    if (!import.meta.env.VITE_GEMINI_API_KEY) {
       throw new Error("API Key no encontrada");
     }
 
